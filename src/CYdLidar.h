@@ -986,7 +986,7 @@ class YDLIDAR_API CYdLidar {
    * @brief Check if the LiDAR Offset Angle is corrected.
    * @param serialNumber    LiDAR serial number
    */
-  void checkCalibrationAngle(const std::string &serialNumber);
+  bool checkCalibrationAngle(const std::string &serialNumber);
 
   /**
     * @brief Whether the current LiDAR range is valid
@@ -1060,6 +1060,7 @@ class YDLIDAR_API CYdLidar {
   bool m_parsingCompleted;          ///< LiDAR Version Information is successfully parsed
   float m_field_of_view;            ///< LiDAR Field of View Angle.
   LidarVersion m_LidarVersion;      ///< LiDAR Version information
+  float zero_offset_angle_scale;   ///< LiDAR Zero Offset Angle
 
  private:
   std::string m_SerialPort;         ///< LiDAR serial port
@@ -1096,22 +1097,22 @@ namespace ydlidar {
 /**
  * @brief system signal initialize
  */
-void os_init();
+YDLIDAR_API void os_init();
 /**
  * @brief Whether system signal is initialized.
  * @return
  */
-bool os_isOk();
+YDLIDAR_API bool os_isOk();
 /**
  * @brief shutdown system signal
  */
-void os_shutdown();
+YDLIDAR_API void os_shutdown();
 
 /**
  * @brief lidarPortList
  * @return
  */
-std::map<std::string, std::string> lidarPortList();
+YDLIDAR_API std::map<std::string, std::string> lidarPortList();
 
 }
 
